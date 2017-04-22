@@ -6,7 +6,7 @@ import re
 from scrapy.crawler import CrawlerProcess
 
 WEBSITE = 'http://68.168.16.149/'
-SEARCH = r'parm'
+SEARCH = r''
 PAGES = 2
 
 class sisSpider(scrapy.Spider):

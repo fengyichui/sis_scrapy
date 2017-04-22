@@ -2,7 +2,7 @@
  
 import os
 import urllib
- 
+import socket
 from sis import settings
  
 DIR = './save/'
@@ -15,10 +15,12 @@ class SisPipeline(object):
         dir = DIR + item['album']['title']
         if not os.path.exists(dir):
             os.makedirs(dir)
+        socket.setdefaulttimeout(30)
         urllib.request.urlretrieve(item['album']['torrent_url'],
                 "{}/{}".format(dir,item['album']['torrent_name']))
         for image_url in item['album']['image']:
             list_name = image_url.split('/')
             file_name = list_name[len(list_name)-1]
+            socket.setdefaulttimeout(30)
             urllib.request.urlretrieve(image_url, '{}/{}'.format(dir,file_name))
         return item
