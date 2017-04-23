@@ -2,7 +2,6 @@
 import scrapy
 from sis.items import SisItem
 import re
- 
 from scrapy.crawler import CrawlerProcess
 
 WEBSITE = 'http://68.168.16.149'
@@ -33,7 +32,12 @@ class sisSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        titles = response.xpath('//table/tbody/tr/th[@class="new" or @class="common"]/span[@id]/a')
+
+        titles = response.xpath('//table/tbody/tr/th[@class]/span[@id]/a')
+        group = response.xpath('//div[@id="nav"]/p[1]/text()').extract_first()
+        page = response.xpath('//div[@class="pages"]/strong//text()').extract_first()
+        page = int(page) if page else 0
+        print("[page-{}] {}".format(page, group))
 
         for title in titles:
             text = title.xpath("text()").extract_first()
@@ -43,10 +47,6 @@ class sisSpider(scrapy.Spider):
                 href = title.xpath("@href").extract_first()
                 yield scrapy.Request(self.website + "/forum/" + href, callback=self.parse_album)
 
-        group = response.xpath('//div[@id="nav"]/p[1]/text()').extract_first()
-        page = response.xpath('//div[@class="pages"]/strong//text()').extract_first()
-        page = int(page) if page else 0
-        print("[page-{}] {}".format(page, group))
         if page < self.pages:
             new_url= response.xpath('//div[@class="pages"]/a[@class="next"]//@href').extract_first()
             if new_url:
