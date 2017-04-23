@@ -14,6 +14,9 @@ BOT_NAME = 'sis'
 SPIDER_MODULES = ['sis.spiders']
 NEWSPIDER_MODULE = 'sis.spiders'
 
+# LOG: DEBUG INFO WARNING ERROR CRITICAL
+LOG_LEVEL = 'INFO'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'aaa (+http://www.yourdomain.com)'
 
