@@ -24,10 +24,11 @@ class SisPipeline(object):
         if not os.path.exists(dir):
             os.makedirs(dir)
 
-        try:
-            urllib.request.urlretrieve(item['album']['torrent_url'], "{}/{}".format(dir,item['album']['torrent_name']))
-        except Exception as e:
-            print("Exception: {} ({})".format(str(e), item['album']['torrent_url']))
+        if item['album']['torrent_name']:
+            try:
+                urllib.request.urlretrieve(item['album']['torrent_url'], "{}/{}".format(dir,item['album']['torrent_name']))
+            except Exception as e:
+                print("Exception: {} ({})".format(str(e), item['album']['torrent_url']))
 
         for image_url in item['album']['image']:
             list_name = image_url.split('/')
