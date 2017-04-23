@@ -12,7 +12,9 @@ class sisSpider(scrapy.Spider):
     name = 'sis'
     allowed_domains = []
 
-    def __init__(self, search=SEARCH, pages=PAGES, website=WEBSITE, start=None):
+    def __init__(self, search=SEARCH, pages=PAGES, website=WEBSITE, start=None, *args, **kwargs):
+        super(sisSpider, self).__init__(*args, **kwargs)
+
         self.search = search
         self.pages = int(pages)
         self.website = website
