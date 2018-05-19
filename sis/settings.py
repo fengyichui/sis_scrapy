@@ -31,8 +31,8 @@ CONCURRENT_REQUESTS = 32
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 0.25
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-#CONCURRENT_REQUESTS_PER_IP = 16
+CONCURRENT_REQUESTS_PER_DOMAIN = 16
+CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
@@ -56,6 +56,9 @@ DOWNLOAD_DELAY = 0.25
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
 #    'aaa.middlewares.MyCustomDownloaderMiddleware': 543,
+#}
+#DOWNLOADER_MIDDLEWARES = { 
+#    'sis.middlewares.ProxyMiddleware': 543,
 #}
 
 # Enable or disable extensions

@@ -7,7 +7,7 @@ import re
 import time
 from sis import settings
 
-DIR = './save/' + time.strftime('%Y-%m-%d %H-%M-%S',time.localtime(time.time())) + '/'
+DIR = './save/' + time.strftime('%Y-%m-%d_%H-%M-%S',time.localtime(time.time())) + '/'
 
 socket.setdefaulttimeout(30)
 

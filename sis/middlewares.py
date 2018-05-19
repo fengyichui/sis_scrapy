@@ -54,3 +54,17 @@ class SisSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class ProxyMiddleware(object): 
+    # overwrite process request 
+    def process_request(self, request, spider): 
+        # 设置代理的主机和端口号
+        request.meta['proxy'] = "http://127.0.0.1:1080"
+
+#        # 设置代理的认证用户名和密码
+#        proxy_user_pass = "user:password"
+#        encoded_user_pass = base64.encodestring(proxy_user_pass)
+#
+#        # 设置代理
+#        request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
